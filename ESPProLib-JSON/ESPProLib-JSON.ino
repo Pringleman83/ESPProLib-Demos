@@ -16,7 +16,9 @@ void cb(esppl_frame_info *info) {
     source.toUpperCase(); dest.toUpperCase();
     // ESSID
     if (info->ssid_length > 0) {for (int i= 0; i< info->ssid_length; i++) { ssid+= (char) info->ssid[i]; }}
-      packet = "{\"dev\": \""+ WiFi.macAddress()+"\" , \"src\": \""+ source +"\" , \"dst\": \""+ dest +"\", \"rss\":\""+(String) info->rssi+"\", \"ess\":\""+ssid+"\", \"ch\":\""+info->channel+"\", \"ft\":\""+(String) info->frametype+"\", \"fst\":\""+(String) info->framesubtype+"\", \"seq\":\""+(String) info->seq_num+"\"}";
+      packet = "{\"dev\": \""+ WiFi.macAddress()+"\" , \"src\": \""+ source +"\" , \"dst\": \""+ dest +"\", \"rss\":\""+(String) info->rssi+"\", \"ess\":\""+ssid+"\", \"ch\":\""+info->channel+"\", \"ft\":\""+(String) info->frametype+"\", \"fst\":\""+(String) info->framesubtype+"}";
+      int rando = random(300,500);
+      
       for (int i = 0; i < packet.length(); i++) {
         Serial.write(packet[i]);   // Push each char 1 by 1 on each loop pass
       }
